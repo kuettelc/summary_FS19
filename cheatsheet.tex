@@ -85,6 +85,7 @@ Euler Discretization: $x(k+1) = x(k) + T_sg^c(x(k),u(k))$
 Euler model -> DT: $A = I + T_s A^c, B = T_sB^c$ \\
 Exact Discretization: $A = e^{A^c T_s}, B = (A^c)^{-1}(A-I)B^c$
 Solution: $x(k+N) = A^Nx(k) + \sum_{i=0}^{N-1} A^iBu(k+N-1-i)$
+Taylor of exponential: $e^{A^c T_s} = \sum_{n=0}^{\infty}\frac{(A^ct)^n}{n!}$
 
 \sectiontitle{Coordinate Transformation}
 
@@ -101,8 +102,14 @@ Obs (nec and suff): rank([$C^T (CA)^T ... (CA^{n-1})^T$]$^T$) = $n$
 system of form: $x(k+1) = g(x(k))$, with \emph{equilibrium point} at $\bar{x}$, i.e. $g(\bar{x}) = \bar{x}$.
 Find a lyapunov function $V(x)$ that satisfies the following constraints: $V(0) = 0 \textit{ and } V(x) > 0, \forall x \in \Omega$. 
 $V(g(x)) - V(x) \leq -\alpha(x) \forall x \in \Omega$\\
-If a V(x) is admitted then x = 0 is \textbf{asymptotically stable}. If, however, $\alpha(x)$ is positive semi-definite, it is Lyapunov stable in $\Omega$. If additionally, V goes to infinity as x goes to infinity, x = 0 is globally asymptotically stable.
+If a V(x) is admitted then x = 0 is \textbf{asymptotically stable}. If, however, $\alpha(x)$ is positive semi-definite, it is Lyapunov stable in $\Omega$. If additionally, V goes to infinity as x goes to infinity, x = 0 is globally asymptotically stable.\\
+\textbf{Indirect method}
 
+Linearize to obtain A matrix. If all ev's stable, then the origin is asymptotically stable. If one ev is not stable, then the origin is unstable. If at least 1 ev is on the border, no conclusions can be drawn.
+
+\textbf{Global Lyapunov stability of Linear Systems}
+
+System: $x(k+1) = Ax(k)$, Lyapunov fct: $V(x) = x^TPx$, $P>0$. Energy decresase condition: $V(Ax(k)) - V(x(k)) = x^T(k)(A^TPA-P)x(k) \leq -\alpha(x(k))$. Choose $\alpha(x(k)) = x^T(k)Qx(k), Q > 0$. $\Rightarrow$ find $P>0$ with $A^TPA-P = -Q, Q>0$. Theorem: unique solution $P>0$ exists, iff $|\lambda_i (A)| < 1$. Stability is always global for linear systems.
 
 
 
